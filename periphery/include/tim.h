@@ -1,0 +1,99 @@
+#ifndef TIMH_INCLUDED
+#define TIMH_INCLUDED
+
+#define TIMVALUE 0x00
+#define TIMTOP 0x04
+#define TIMPRESCALER 0x08
+#define TIMCONTROL 0x0C
+#define TIMENABLE 0x10
+
+#define TIMINT_MASK 0x14
+#define TIMINT_CLEAR 0x18
+#define TIMINT_FLAGS 0x1C
+
+#define TIMCH_BASE 0x80
+#define TIMCH_CONTROL_OFFSET 0x00
+#define TIMCH_OCR_OFFSET 0x04
+#define TIMCH_ICR_OFFSET 0x08
+#define TIMCH_SIZE 0x10
+
+#define TIMCONTROL_MODE_S 0
+#define TIMCONTROL_MODE_M (0x3 << TIMCONTROL_MODE_S)
+#define TIMCONTROL_CLOCK_S 2
+#define TIMCONTROL_CLOCK_M (0x3 << TIMCONTROL_CLOCK_S)
+//
+#define TIMCONTROL_MODE_UP_M (0 << TIMCONTROL_MODE_S)
+#define TIMCONTROL_MODE_DOWN_M (1 << TIMCONTROL_MODE_S)
+#define TIMCONTROL_MODE_BIDIR_M (2 << TIMCONTROL_MODE_S)
+//
+#define TIMCONTROL_CLOCK_M (0x3 << TIMCONTROL_CLOCK_S)
+#define TIMCONTROL_CLOCK_PRESCALER_M (0x0 << TIMCONTROL_CLOCK_S)
+#define TIMCONTROL_CLOCK_TIM1_M (0x1 << TIMCONTROL_CLOCK_S)
+#define TIMCONTROL_CLOCK_TX_PIN_M (0x2 << TIMCONTROL_CLOCK_S)
+#define TIMCONTROL_CLOCK_TIM2_M (0x3 << TIMCONTROL_CLOCK_S)
+
+#define TIMPRESCALER_ENABLE_S 8
+#define TIMPRESCALER_ENABLE_M (1 << TIMPRESCALER_ENABLE_S)
+#define TIMPRESCALER_DISABLE_M (0 << TIMPRESCALER_ENABLE_S)
+//
+#define TIMPRESCALER_S 0
+#define TIMPRESCALER_M (0xFF << TIMPRESCALER_S)
+
+#define TIMENABLE_S 0
+#define TIMENABLE_M (1 << TIMENABLE_S)
+#define TIMDISABLE_M (0 << TIMENABLE_S)
+#define TIMRESET_VALUE_S 1
+#define TIMRESET_VALUE_M (1 << TIMRESET_VALUE_S)
+
+#define TIMINT_OVERFLOW_S 0
+#define TIMINT_OVERFLOW_M (1 << TIMINT_OVERFLOW_S)
+#define TIMINT_UNDERFLOW_S 1
+#define TIMINT_UNDERFLOW_M (1 << TIMINT_UNDERFLOW_S)
+
+#define TIMCH_CONTROL_CAPTURE_EDGE_S 4
+#define TIMCH_CONTROL_CAPTURE_EDGE_M (1 << TIMCH_CONTROL_CAPTURE_EDGE_S)
+#define TIMCH_CONTROL_CAPTURE_POS_M (0 << TIMCH_CONTROL_CAPTURE_EDGE_S)
+#define TIMCH_CONTROL_CAPTURE_NEG_M (1 << TIMCH_CONTROL_CAPTURE_EDGE_S)
+//
+#define TIMCH_CONTROL_MODE_S 5
+#define TIMCH_CONTROL_MODE_M (3 << TIMCH_CONTROL_MODE_S)
+#define TIMCH_CONTROL_MODE_COMPARE_M (1 << TIMCH_CONTROL_MODE_S)
+#define TIMCH_CONTROL_MODE_CAPTURE_M (2 << TIMCH_CONTROL_MODE_S)
+#define TIMCH_CONTROL_MODE_PWM_M (3 << TIMCH_CONTROL_MODE_S)
+//
+#define TIMCH_CONTROL_ENABLE_S 7
+#define TIMCH_CONTROL_ENABLE_M (1 << TIMCH_CONTROL_ENABLE_S)
+#define TIMCH_CONTROL_DISABLE_M (0 << TIMCH_CONTROL_ENABLE_S)
+//
+#define TIMCH_CONTROL_INVERTED_PWM_S 8
+#define TIMCH_CONTROL_INVERTED_PWM_M (1 << TIMCH_CONTROL_INVERTED_PWM_S)
+
+#ifndef _ASSEMBLER_
+#include <inttypes.h>
+
+typedef struct
+{
+    volatile uint32_t Control;
+    volatile uint32_t OCR;
+    volatile uint32_t ICR;
+    volatile uint32_t reserved0;
+} TIMCHANNEL_TypeDef;
+
+typedef struct
+{
+    volatile uint32_t Value; /* Offset: 0x000 (R)  */
+    volatile uint32_t Top; /* Offset: 0x004 (R/W)  */
+    volatile uint32_t Prescaler; /* Offset: 0x008 (R/W)  */
+    volatile uint32_t Control; /* Offset: 0x00C (R/W)  */
+    volatile uint32_t Enable; /* Offset: 0x010 (R/W)  */
+    volatile uint32_t IntMask; /* Offset: 0x014 (R/W)  */
+    volatile uint32_t IntClear; /* Offset: 0x018 (R/W)  */
+    volatile uint32_t IntFlags; /* Offset: 0x01C (R)  */
+
+    volatile uint8_t reserved0[0x60];
+    TIMCHANNEL_TypeDef Channels[4];
+
+} TIMTypeDef;
+#endif
+
+#endif // TIMH_INCLUDED
