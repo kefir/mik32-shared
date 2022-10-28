@@ -1,6 +1,6 @@
 #include "SPIFI_W25Q_lib.h"
 #include "W25Q.h"
-#include "mcu32_memory_map.h"
+#include "mik32.h"
 #include "periphery/spifi.h"
 
 static unsigned int SPIFI_WaitCmdSet(void);
