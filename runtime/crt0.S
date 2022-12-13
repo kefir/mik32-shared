@@ -50,7 +50,7 @@ memset_2:
 .endm
 
 
-.text
+.section .boot,"ax",@progbits
 
 _start:
     
