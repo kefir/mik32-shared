@@ -6,7 +6,7 @@ ENTRY(_start)
 
 
 MEMORY {
-  rom : ORIGIN = DEFINED(ROM_ORIGIN) ? ROM_ORIGIN : 0x02000000, LENGTH = 8K
+  rom : ORIGIN = DEFINED(ROM_ORIGIN) ? ROM_ORIGIN : 0x00000000, LENGTH = 8K
   /* ram : ORIGIN = 0x02010000, LENGTH = 8K */
   ram : ORIGIN = 0x02002000, LENGTH = 8K
 }
@@ -21,6 +21,7 @@ SECTIONS {
         *crt0.o(.text .text.*)
 
         *(.text)
+        *(.boot)
         *(.text.*)
         *(.rodata)
         *(.rodata.*)      
