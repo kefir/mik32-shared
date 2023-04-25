@@ -18,7 +18,7 @@ SECTIONS {
     .text  : {
         PROVIDE(__TEXT_START__ = .);
         *crt0.o(.text .text.*)
-
+        *(.boot)
         *(.text)
         *(.text.*)
         *(.rodata)
