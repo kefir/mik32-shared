@@ -73,6 +73,7 @@ _start:
     memset a1, a2, zero
     
     jalr_abs ra, SystemInit
+    jalr_abs ra, __libc_init_array
     jalr_abs ra, main
     jalr_abs ra, exit
 
