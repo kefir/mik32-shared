@@ -1,54 +1,56 @@
 #ifndef ANALOG_REG_H_INCLUDED
 #define ANALOG_REG_H_INCLUDED
 
-#define DAC_CFG_EN18_S 0
-#define DAC_CFG_EN18_M (1 << DAC_CFG_EN18_S)
-#define DAC_CFG_RESN_S 1
-#define DAC_CFG_RESN_M (1 << DAC_CFG_RESN_S)
-#define DAC_CFG_DIV_S 2
-#define DAC_CFG_DIV_M (0xFF << DAC_CFG_DIV_S)
-#define DAC_CFG_DIV(v) (((v) << DAC_CFG_DIV_S) & DAC_CFG_DIV_M)
-#define DAC_CFG_EXTEN_S 10
-#define DAC_CFG_EXTEN_M (1 << DAC_CFG_EXTEN_S)
-#define DAC_EXTPAD_EN_S 11
+#define DAC_CFG_EN18_BIT 0
+#define DAC_CFG_RESN_BIT 1
+#define DAC_CFG_DIV_BIT 2
+#define DAC_CFG_EXTEN_BIT 10
+#define DAC_EXTPAD_EN_BIT 11
 
-#define TSENS_NPD_S 0
-#define TSENS_NPD_CLK_S 1
-#define TSENS_NRST_S 2
-#define TSENS_TRIM_S 3
-#define TSENS_DIV 13
+#define DAC_CFG_EN18_M (1 << DAC_CFG_EN18_BIT)
+#define DAC_CFG_RESN_M (1 << DAC_CFG_RESN_BIT)
+#define DAC_CFG_DIV_M (0xFF << DAC_CFG_DIV_BIT)
+#define DAC_CFG_DIV(v) (((v) << DAC_CFG_DIV_BIT) & DAC_CFG_DIV_M)
+#define DAC_CFG_EXTEN_M (1 << DAC_CFG_EXTEN_BIT)
 
-#define TSENS_IRQ_EOS_S 3
-#define TSENS_IRQ_HI_S 4
-#define TSENS_IRQ_LOW_S 5
-#define TSENS_IRQ_MASK_EOS_S 0
-#define TSENS_IRQ_MASK_HI_S 1
-#define TSENS_IRQ_MASK_LOW_S 2
+#define TSENS_NPD_BIT 0
+#define TSENS_NPD_CLK_BIT 1
+#define TSENS_NRST_BIT 2
+#define TSENS_TRIM_BIT 3
+#define TSENS_DIV_BIT 13
 
-#define TSENS_IRQ_CLEAR_EOS_S 0
-#define TSENS_IRQ_CLEAR_HI_S 1
-#define TSENS_IRQ_CLEAR_LOW_S 2
+#define TSENS_IRQ_EOS_BIT 3
+#define TSENS_IRQ_HI_BIT 4
+#define TSENS_IRQ_LOW_BIT 5
+#define TSENS_IRQ_MASK_EOS_BIT 0
+#define TSENS_IRQ_MASK_HI_BIT 1
+#define TSENS_IRQ_MASK_LOW_BIT 2
 
-#define TSENS_HI_THRESHOLD_S 0
-#define TSENS_LOW_THRESHOLD_S 10
+#define TSENS_IRQ_CLEAR_EOS_BIT 0
+#define TSENS_IRQ_CLEAR_HI_BIT 1
+#define TSENS_IRQ_CLEAR_LOW_BIT 2
+
+#define TSENS_HI_THRESHOLD_BIT 0
+#define TSENS_LOW_THRESHOLD_BIT 10
 
 #define TSENS_VALUE(i) (uint32_t)((i + 273.15) * 1024 / 619.2)
 
-#define ADC_EN_S 0
-#define ADC_CONFIG_EN (1 << ADC_EN_S)
-#define ADC_RESETn_S 1
-#define ADC_CONFIG_RESET_N (1 << ADC_RESETn_S)
-#define ADC_EXTREF_S 2
-#define ADC_CONFIG_EXTREF (1 << ADC_EXTREF_S)
-#define ADC_EXTPAD_EN_S 3
-#define ADC_CONFIG_EXTCLB (1 << ADC_EXTPAD_EN_S)
-#define ADC_SEL_S 4
-#define ADC_COS_S 7
-#define ADC_CONFIG_COS (1 << ADC_COS_S)
+#define ADC_CONFIG_EN_BIT 0
+#define ADC_CONFIG_RESET_BIT 1
+#define ADC_CONFIG_EXTREF_BIT 2
+#define ADC_CONFIG_EXTPAD_EN_BIT 3
+#define ADC_CONFIG_SEL_BIT 4
+#define ADC_CONFIG_COS_BIT 7
 
-#define REF_CLB_VCOEF_S 0
-#define REF_CLB_ICOEF_S 4
-#define REF_CLB_EN_S 8
+#define ADC_CONFIG_EN (1 << ADC_CONFIG_EN_BIT)
+#define ADC_CONFIG_RESET_N (1 << ADC_CONFIG_RESET_BIT)
+#define ADC_CONFIG_EXTREF (1 << ADC_CONFIG_EXTREF_BIT)
+#define ADC_CONFIG_EXTCLB (1 << ADC_CONFIG_EXTPAD_EN_BIT)
+#define ADC_CONFIG_COS (1 << ADC_CONFIG_COS_BIT)
+
+#define REF_CLB_VCOEF_BIT 0
+#define REF_CLB_ICOEF_BIT 4
+#define REF_CLB_EN_BIT 8
 
 #define TEST_DIG_MUX_COV_LDO_M (0 << 9)
 #define TEST_DIG_MUX_BATON_M (1 << 9)
@@ -97,8 +99,7 @@ typedef struct
     volatile uint32_t ADC_VALID;
     volatile uint32_t ADC_VALUE;
     volatile uint32_t TEST_MUX;
-
-} ANALOG_REG_TypeDef;
+} ADC_TypeDef;
 
 #endif
 

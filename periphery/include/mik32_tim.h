@@ -92,8 +92,7 @@ typedef struct
 
     volatile uint8_t reserved0[0x60];
     TIMCHANNEL_TypeDef Channels[4];
-
-} TIMTypeDef;
+} TIM_TypeDef;
 #endif
 
 #endif // TIMH_INCLUDED
