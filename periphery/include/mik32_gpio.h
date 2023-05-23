@@ -37,7 +37,6 @@ typedef struct
     volatile uint32_t DIRECTION_IN;
     volatile uint32_t OUTPUT;
     volatile uint32_t CONTROL;
-
 } GPIO_TypeDef;
 
 #endif
