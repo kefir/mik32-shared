@@ -1,18 +1,18 @@
 #ifndef SPI_H_INCLUDED
 #define SPI_H_INCLUDED
 
-#define SPI_CR_POS 0x00
-#define SPI_SR_POS 0x04
-#define SPI_IEN_POS 0x08
-#define SPI_IDIS_POS 0x0C
-#define SPI_IMASK_POS 0x10
-#define SPI_ENABLE_POS 0x14
-#define SPI_DELAY_POS 0x18
-#define SPI_TXD_POS 0x1C
-#define SPI_RXD_POS 0x20
-#define SPI_SIC_POS 0x24
-#define SPI_THR_POS 0x28
-#define SPI_MID_POS 0xFC
+#define SPI_CR_OFFSET 0x00
+#define SPI_SR_OFFSET 0x04
+#define SPI_IEN_OFFSET 0x08
+#define SPI_IDIS_OFFSET 0x0C
+#define SPI_IMASK_OFFSET 0x10
+#define SPI_ENABLE_OFFSET 0x14
+#define SPI_DELAY_OFFSET 0x18
+#define SPI_TXD_OFFSET 0x1C
+#define SPI_RXD_OFFSET 0x20
+#define SPI_SIC_OFFSET 0x24
+#define SPI_THR_OFFSET 0x28
+#define SPI_MID_OFFSET 0xFC
 
 //
 #define SPI_CR_MODE_SEL_BIT 0
