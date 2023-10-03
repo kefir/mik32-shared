@@ -1,7 +1,7 @@
 #define EXCEPTION_STACK_SPACE 32*4
 #define EXCEPTION_SAVED_REGISTERS 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31
 
-.globl _start, main, exit
+.globl _start, main 
 .weak exit, SystemInit
 
 .globl trap_entry
@@ -71,18 +71,10 @@ _start:
     la_abs  a2, __BSS_END__
     memset a1, a2, zero
 
-    # li t0, 0x00060028
-    # li t1, 0x02
-    # sw t1, 0(t1)
-    
-    # Set mtvec
-    # li   t0, 0x80000000
-    # csrw mtvec, t0
-
-    call SystemInit
+    # Run main
     call __libc_init_array
-    call main
-    call exit
+    jalr_abs ra, SystemInit
+    jalr_abs ra, main
     
 ## Actions before main: none by default
 ## (weak symbol here - may be redefined)
@@ -104,7 +96,8 @@ raw_trap_handler:
     .endr
     
     ## Call handler 
-    call trap_handler
+    la      ra, trap_handler
+    jalr    ra
     
     ## restore registers
     .irp index, EXCEPTION_SAVED_REGISTERS
@@ -116,8 +109,4 @@ raw_trap_handler:
 ## Default handler: infinit loop
 ## (weak symbol here - may be redefined)
 trap_handler:
-1:  j       1b
-
-exit:
-1: wfi
-    j 1b
+1:  j 1b
